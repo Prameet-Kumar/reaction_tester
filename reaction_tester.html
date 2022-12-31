@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <title>Game 0n!</title>
+    <style>
+      .shapes {
+        width: 300px;
+        height: 300px;
+        background-color: red;
+        display: none;
+        
+        border: black;
+        border-style:double;
+        border-width: 20px;
+      }
+      .shapes:hover{
+
+        border-style: outset;
+        border-width: 20px;
+      }
+      button{
+        width: 150px;
+        height: 60px;
+        box-shadow: 0px 3px 4px 0px rgb(2, 3, 4);
+        display: none;
+        margin-left: 8px;
+      }
+    </style>
+  </head>
+  <body background="picture/game7.jpg">
+    <Div class="row">
+      <div class="col-sm-4" style="background-image: url('picture/game4.jpg');width: 200px;height: 60px;color: rgb(190, 198, 213);font-weight: bold;font-size: 15px;padding: 15px 30px;text-shadow: 4px 5px 4px black;">Time taken : <span id="time"></span></div>
+      <div class="col-sm-4" style="background-image: url('picture/game4.jpg');width: 200px;height: 60px;color: rgb(190, 198, 213);font-weight: bold;font-size: 15px;padding: 15px 30px;text-shadow: 4px 5px 4px black;"> <span id="final">Average : </span></div>
+      <div class="col-sm-4"><a href="reaction_tester.html"><button class="btn-primary btn-lg" id="play">Play Again</button></a></div>
+    </Div>
+  
+   
+    
+    <div class="shapes" id="formation"></div>
+
+    <script type="text/javascript">
+      var total = 0;
+      var count = 0;
+      function getRandomColor() {
+        var letters = "0123456789ABCDEF";
+        var color = "#";
+        for (var i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+      }
+      //   setTimeout(AppearShapes, Math.random() * 1000);
+      var startTime = new Date().getTime();
+
+      function AppearShapes() {
+        count++;
+        if (count < 11) {
+          var width = Math.random() * 200 + 100;
+          var top = Math.random() * 200;
+          document.getElementById("formation").style.display = "block";
+          document.getElementById("formation").style.height = width + "px";
+          document.getElementById("formation").style.marginTop = top + "px";
+          document.getElementById("formation").style.marginLeft = top + "px";
+
+          document.getElementById("formation").style.width = width + "px";
+          document.getElementById("formation").style.backgroundColor =
+            getRandomColor();
+          if (Math.random() > 0.5) {
+            document.getElementById("formation").style.borderRadius = "50%";
+          } else {
+            document.getElementById("formation").style.borderRadius = "0";
+          }
+
+          startTime = new Date().getTime();
+        } else {
+          num = total / 5;
+          let n = num.toFixed(4);
+          document.getElementById("final").innerHTML =
+            "Average :" + num.toFixed(3) + "s";
+            document.getElementById("play").style.display="block";
+        }
+      }
+
+      setTimeout(AppearShapes, Math.random() * 1000);
+      document.getElementById("formation").onclick = function () {
+        var endTime = new Date().getTime();
+        document.getElementById("formation").style.display = "none";
+
+        document.getElementById("time").innerHTML =
+          (endTime - startTime) / 1000 + "s";
+
+        setTimeout(AppearShapes, Math.random() * 1000);
+        total = total + (endTime - startTime) / 1000;
+        // alert(total.toFixed(3));
+      };
+    </script>
+  </body>
+</html>
