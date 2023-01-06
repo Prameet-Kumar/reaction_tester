@@ -55,11 +55,11 @@
     <script type="text/javascript">
       
 
-      document.getElementById("inst").onclick=function()
-      {
+      // document.getElementById("inst").onclick=function()
+      // {
 
-        document.getElementById("disInst").style.display = "block";
-      }
+      //   document.getElementById("disInst").style.display = "block";
+      // }
     </script>
 
     <div
@@ -98,7 +98,7 @@
         </div>
 
         <div align="center" style="padding-top: 40px">
-          <button class="btn-lg btn-primary but" id="inst">How to Play</button>
+          <button onclick='document.getElementById("disInst").style.display = "block"' class="btn-lg btn-primary but" id="inst">How to Play</button>
 
           <a href="reaction_tester.html"
             ><button
