@@ -54,12 +54,18 @@
   <body background="picture/game6.jpg">
     <script type="text/javascript">
       
+      var count=0;
+      function myfunction(){
+      if(count%2==0){
+      document.getElementById("disInst").style.display = "block";
+      }
+      else{
+      document.getElementById("disInst").style.display = "none";
 
-      // document.getElementById("inst").onclick=function()
-      // {
+      }
+      count++;
 
-      //   document.getElementById("disInst").style.display = "block";
-      // }
+      }
     </script>
 
     <div
@@ -98,7 +104,7 @@
         </div>
 
         <div align="center" style="padding-top: 40px">
-          <button onclick='document.getElementById("disInst").style.display = "block"' class="btn-lg btn-primary but" id="inst">How to Play</button>
+          <button onclick="myfunction()" class="btn-lg btn-primary but" id="inst">How to Play</button>
 
           <a href="reaction_tester.html"
             ><button
