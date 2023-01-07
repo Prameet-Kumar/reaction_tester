@@ -19,6 +19,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> <script src="https://cdn.jsdelivr.net/sweetalert2/latest/sweetalert2.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
     <title>Game 0n!</title>
     <style>
       .shapes {
@@ -52,6 +57,7 @@
         margin-left: 90px;
         box-shadow: 6px 3px 4px white;
         display: none;
+        text-align: center
       }
       #over2 {
         width: 200px;
@@ -96,6 +102,23 @@
       >
         <span id="final">Average : </span>
       </div>
+      <!-- <div
+        class="col-sm-3"
+        style="
+          background-image: url('picture/game4.jpg');
+          width: 200px;
+          height: 60px;
+          color: rgb(190, 198, 213);
+          font-weight: bold;
+          font-size: 15px;
+          padding: 15px 30px;
+          text-shadow: 4px 5px 4px black;
+          margin-top: 10px;
+        "
+      >
+        Highest score: <span id="min"></span>
+      </div> -->
+
       <div class="col-sm-4" style="margin-top: 10px;display: inline;">
         <a href="reaction_tester.html"
           ><button class="btn-primary btn-lg play1" id="play">Play Again</button></a
@@ -117,6 +140,9 @@
 
     <script type="text/javascript">
 
+
+      var flag=1;
+      var minimun=999;
       var total = 0;
       var count = 0;
       function getRandomColor() {
@@ -155,7 +181,20 @@
           let n = num.toFixed(4);
           document.getElementById("final").innerHTML =
             "Average :" + num.toFixed(3) + "s";
-          document.getElementById("play").style.display = "inline";
+            flag=0;
+            Swal.fire({
+  title: 'Congo!!!',
+  text: "You won the game!",
+  icon: 'success',
+  showClass: {
+    popup: 'animate__animated animate__fadeInDown'
+  },
+  hideClass: {
+    popup: 'animate__animated animate__fadeOutUp'
+  }
+})
+            
+          document.getElementById("play").style.display = "block";
         }
       }
       window.addEventListener("click", function (e) {
@@ -173,8 +212,9 @@
         }
         else {
           // Clicked outside the box
+          if (flag!=0){
           document.getElementById("over").style.display = "block";
-          document.getElementById("over2").style.display = "block";
+          document.getElementById("over2").style.display = "block";}
           count = 111;
           document.getElementById("formation").style.display = "NONE";
           document.getElementById("play").style.display = "inline";
@@ -192,7 +232,7 @@
 
         setTimeout(AppearShapes, Math.random() * 1000);
         total = total + (endTime - startTime) / 1000;
-        // alert(total.toFixed(3));
+        
       };
     </script>
   </body>
