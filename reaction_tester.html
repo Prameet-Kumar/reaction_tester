@@ -66,6 +66,12 @@
         box-shadow: 6px 3px 4px white;
         display: none;
       }
+      #myaudio{
+        display:none;
+      }
+      #mylost{
+        display: none;
+      }
     </style>
   </head>
   <body  background="picture/game7.jpg">
@@ -176,12 +182,15 @@
           }
 
           startTime = new Date().getTime();
-        } else {
+        } else {         
           num = total / 5;
           let n = num.toFixed(4);
           document.getElementById("final").innerHTML =
             "Average :" + num.toFixed(3) + "s";
             flag=0;
+            
+
+
             Swal.fire({
   title: 'Congo!!!',
   text: "You won the game!",
@@ -218,7 +227,18 @@
           count = 111;
           document.getElementById("formation").style.display = "NONE";
           document.getElementById("play").style.display = "inline";
-          swal("GAME OVER!","","error","!");
+       
+          var a = document.getElementById("myaudio");
+          var b = document.getElementById("mylost");
+             a.muted = true;
+             
+         
+             b.muted = false;
+             
+             b.autoplay=true;
+         
+          
+          
         }
       });
 
@@ -235,5 +255,17 @@
         
       };
     </script>
+    <audio id="myaudio" controls autoplay loop >
+      <source src="picture/game.mp3" type="audio/ogg">
+      <!-- <source src="horse.mp3" type="audio/mpeg"> -->
+    Your browser does not support the audio element.
+    </audio>
+    <audio id="mylost" controls muted autoplay >
+      <source src="picture/lost.mp3" type="audio/ogg">
+      <!-- <source src="horse.mp3" type="audio/mpeg"> -->
+    Your browser does not support the audio element.
+    </audio>
+  
+   
   </body>
 </html>
